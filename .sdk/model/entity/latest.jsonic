@@ -1,0 +1,74 @@
+# Entity: latest
+
+main: kit: entity: latest: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "base"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "rate"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "time_last_updated"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "latest"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "base_currency"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/latest/{base_currency}"
+          parts: [
+            "latest"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              base_currency: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

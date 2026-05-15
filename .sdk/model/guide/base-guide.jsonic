@@ -1,0 +1,15 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 1
+  metrics: count: path: 1
+  metrics: count: method: 1
+
+  entity: latest: {
+    path: "/latest/{base_currency}": {
+      rename: param: "base_currency": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}

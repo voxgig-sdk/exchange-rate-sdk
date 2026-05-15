@@ -1,0 +1,32 @@
+# BasicLatestFlow
+
+main: kit: flow: BasicLatestFlow:
+{
+  entity: "latest",
+  kind: "basic",
+  name: "BasicLatestFlow",
+  step: [
+    {
+      input: {
+        ref: "latest_ref01",
+        srcdatavar: "latest_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "latest01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-latest_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLatestFlow"
+}

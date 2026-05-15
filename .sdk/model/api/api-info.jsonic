@@ -1,0 +1,21 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: "Fetch the latest currency exchange rates via API. ExchangeRate-API is free and unlimited."
+      servers: [
+        {
+          description: "No authentication endpoint. Returns latest exchange rates and some metadata."
+          url: "https://api.exchangerate-api.com/v4"
+        }
+      ]
+      termsOfService: "https://www.exchangerate-api.com/terms"
+      title: "ExchangeRate-API"
+      version: "4"
+    }
+  }
+}
+
+}
