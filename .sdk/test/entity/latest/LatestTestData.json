@@ -5,19 +5,22 @@
         "base": "s28",
         "date": "s29",
         "rate": {},
-        "time_last_updated": "s2b"
+        "time_last_updated": "s2b",
+        "id": "LATEST00"
       },
       "LATEST01": {
         "base": "s50",
         "date": "s51",
         "rate": {},
-        "time_last_updated": "s53"
+        "time_last_updated": "s53",
+        "id": "LATEST01"
       },
       "LATEST02": {
         "base": "s78",
         "date": "s79",
         "rate": {},
-        "time_last_updated": "s7b"
+        "time_last_updated": "s7b",
+        "id": "LATEST02"
       }
     }
   },

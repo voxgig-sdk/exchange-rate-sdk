@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/exchange-rate-sdk/core"
+	"github.com/voxgig-sdk/exchange-rate-sdk/go/core"
 )
 
 type BaseFeature struct {

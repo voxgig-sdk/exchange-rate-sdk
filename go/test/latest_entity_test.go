@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/exchange-rate-sdk"
-	"github.com/voxgig-sdk/exchange-rate-sdk/core"
+	sdk "github.com/voxgig-sdk/exchange-rate-sdk/go"
+	"github.com/voxgig-sdk/exchange-rate-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/exchange-rate-sdk/go/utility/struct"
 )
 
 func TestLatestEntity(t *testing.T) {

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/exchange-rate-sdk"
-	"github.com/voxgig-sdk/exchange-rate-sdk/core"
+	sdk "github.com/voxgig-sdk/exchange-rate-sdk/go"
+	"github.com/voxgig-sdk/exchange-rate-sdk/go/core"
 )
 
 func TestLatestDirect(t *testing.T) {
