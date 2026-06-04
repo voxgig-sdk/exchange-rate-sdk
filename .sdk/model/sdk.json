@@ -14,7 +14,17 @@
         ],
         "termsOfService": "https://www.exchangerate-api.com/terms",
         "title": "ExchangeRate-API",
-        "version": "4"
+        "version": "4",
+        "tagline": "Free, key-free currency exchange rates for 160+ ISO 4217 currencies, refreshed daily",
+        "homepage": "https://www.exchangerate-api.com",
+        "docs_url": "https://www.exchangerate-api.com/docs/free",
+        "license_short": "Free for personal and commercial use with attribution; redistribution not permitted.",
+        "license_md": "- Open access tier requires no API key and is free for personal or commercial currency conversion.\n- Attribution required: display \"Rates By Exchange Rate API\" linking to https://www.exchangerate-api.com.\n- Caching the response is explicitly permitted; re-distribution of the raw data is not.\n- Paid v6 plans (with API key) cover higher update frequencies and additional endpoints.",
+        "about_md": "[ExchangeRate-API](https://www.exchangerate-api.com) is a long-running currency rates service that publishes a free, key-free open access endpoint alongside its paid v6 API. The slug here wraps the no-auth endpoint at `https://open.er-api.com/v6/latest/{base}` (the upstream catalogue lists this under the API's v4-style free tier).\n\nWhat you get from the API:\n\n- Latest conversion rates for a chosen base currency against 160+ ISO 4217 three-letter codes (USD, EUR, GBP, etc.).\n- Timestamps for the current rate set (`time_last_update_unix` / `_utc`) and the next scheduled refresh (`time_next_update_unix` / `_utc`).\n- An end-of-life marker (`time_eol_unix`) so clients can plan migrations before an endpoint is retired.\n\nOperational notes: rates refresh approximately once every 24 hours, so requesting more often than daily (or hourly) brings no new data and may trigger HTTP 429 responses that clear after ~20 minutes. The free tier has no API key; the separate paid v6 plans require one and offer faster refresh cadences. CORS is disabled on the open access host, so browser callers typically need a proxy.",
+        "entity_desc": {
+          "latest": "Latest exchange rates for a given base currency against all supported ISO 4217 codes, served from `GET /latest/{base}` (open access host `https://open.er-api.com/v6/latest/{base}`)."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -22,7 +32,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "latest": {

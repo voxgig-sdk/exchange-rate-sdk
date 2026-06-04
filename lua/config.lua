@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://api.exchangerate-api.com/v4",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },

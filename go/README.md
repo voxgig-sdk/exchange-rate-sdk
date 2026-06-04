@@ -28,16 +28,13 @@ package main
 
 import (
     "fmt"
-    "os"
 
     sdk "github.com/voxgig-sdk/exchange-rate-sdk/go"
     "github.com/voxgig-sdk/exchange-rate-sdk/go/core"
 )
 
 func main() {
-    client := sdk.NewExchangeRateSDK(map[string]any{
-        "apikey": os.Getenv("EXCHANGE-RATE_APIKEY"),
-    })
+    client := sdk.NewExchangeRateSDK(map[string]any{})
 ```
 
 ### 3. Load a latest
@@ -140,7 +137,6 @@ Create a `.env.local` file at the project root:
 
 ```
 EXCHANGE-RATE_TEST_LIVE=TRUE
-EXCHANGE-RATE_APIKEY=<your-key>
 ```
 
 Then run:
@@ -162,7 +158,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `"apikey"` | `string` | API key for authentication. |
 | `"base"` | `string` | Base URL of the API server. |
 | `"prefix"` | `string` | URL path prefix prepended to all requests. |
 | `"suffix"` | `string` | URL path suffix appended to all requests. |
