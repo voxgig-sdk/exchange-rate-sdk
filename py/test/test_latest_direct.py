@@ -69,12 +69,14 @@ def _latest_direct_setup(mockres):
     env = runner.env_override({
         "EXCHANGERATE_TEST_LATEST_ENTID": {},
         "EXCHANGERATE_TEST_LIVE": "FALSE",
+        "EXCHANGERATE_APIKEY": "NONE",
     })
 
     live = env.get("EXCHANGERATE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("EXCHANGERATE_APIKEY"),
         }
         client = ExchangeRateSDK(merged_opts)
         return {

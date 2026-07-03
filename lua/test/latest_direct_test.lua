@@ -72,12 +72,14 @@ function latest_direct_setup(mockres)
   local env = runner.env_override({
     ["EXCHANGERATE_TEST_LATEST_ENTID"] = {},
     ["EXCHANGERATE_TEST_LIVE"] = "FALSE",
+    ["EXCHANGERATE_APIKEY"] = "NONE",
   })
 
   local live = env["EXCHANGERATE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["EXCHANGERATE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

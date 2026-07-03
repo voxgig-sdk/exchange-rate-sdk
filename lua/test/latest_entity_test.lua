@@ -91,6 +91,7 @@ function latest_basic_setup(extra)
     ["EXCHANGERATE_TEST_LATEST_ENTID"] = idmap,
     ["EXCHANGERATE_TEST_LIVE"] = "FALSE",
     ["EXCHANGERATE_TEST_EXPLAIN"] = "FALSE",
+    ["EXCHANGERATE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function latest_basic_setup(extra)
   if env["EXCHANGERATE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["EXCHANGERATE_APIKEY"],
       },
       extra or {},
     })

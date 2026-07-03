@@ -117,12 +117,14 @@ func latestDirectSetup(mockres any) *latestDirectSetupResult {
 	env := envOverride(map[string]any{
 		"EXCHANGERATE_TEST_LATEST_ENTID": map[string]any{},
 		"EXCHANGERATE_TEST_LIVE":    "FALSE",
+		"EXCHANGERATE_APIKEY":       "NONE",
 	})
 
 	live := env["EXCHANGERATE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["EXCHANGERATE_APIKEY"],
 		}
 		client := sdk.NewExchangeRateSDK(mergedOpts)
 

@@ -1,20 +1,8 @@
 # ExchangeRate SDK
 
-Free, key-free currency exchange rates for 160+ ISO 4217 currencies, refreshed daily
+ExchangeRate-API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About ExchangeRate-API
-
-[ExchangeRate-API](https://www.exchangerate-api.com) is a long-running currency rates service that publishes a free, key-free open access endpoint alongside its paid v6 API. The slug here wraps the no-auth endpoint at `https://open.er-api.com/v6/latest/{base}` (the upstream catalogue lists this under the API's v4-style free tier).
-
-What you get from the API:
-
-- Latest conversion rates for a chosen base currency against 160+ ISO 4217 three-letter codes (USD, EUR, GBP, etc.).
-- Timestamps for the current rate set (`time_last_update_unix` / `_utc`) and the next scheduled refresh (`time_next_update_unix` / `_utc`).
-- An end-of-life marker (`time_eol_unix`) so clients can plan migrations before an endpoint is retired.
-
-Operational notes: rates refresh approximately once every 24 hours, so requesting more often than daily (or hourly) brings no new data and may trigger HTTP 429 responses that clear after ~20 minutes. The free tier has no API key; the separate paid v6 plans require one and offer faster refresh cadences. CORS is disabled on the open access host, so browser callers typically need a proxy.
 
 ## Try it
 
@@ -48,27 +36,31 @@ gem install exchange-rate-sdk
 luarocks install exchange-rate-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { ExchangeRateSDK } from 'exchange-rate'
 
-const client = new ExchangeRateSDK({})
+const client = new ExchangeRateSDK({
+  apikey: process.env.EXCHANGE-RATE_APIKEY,
+})
 
+// Load latest data
+const latest = await client.Latest().load({})
+console.log(latest.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -98,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Latest** | Latest exchange rates for a given base currency against all supported ISO 4217 codes, served from `GET /latest/{base}` (open access host `https://open.er-api.com/v6/latest/{base}`). | `/latest/{base_currency}` |
+| **Latest** |  | `/latest/{base_currency}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -108,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from exchangerate_sdk import ExchangeRateSDK
 
-client = ExchangeRateSDK({})
+client = ExchangeRateSDK({
+    "apikey": os.environ.get("EXCHANGE-RATE_APIKEY"),
+})
 
 
 # Load a specific latest
-latest, err = client.Latest(None).load(
-    {"id": "example_id"}, None
-)
+latest, err = client.Latest().load({"id": "example_id"})
+print(latest)
 ```
 
 ### PHP
@@ -125,13 +119,14 @@ latest, err = client.Latest(None).load(
 <?php
 require_once 'exchangerate_sdk.php';
 
-$client = new ExchangeRateSDK([]);
+$client = new ExchangeRateSDK([
+    "apikey" => getenv("EXCHANGE-RATE_APIKEY"),
+]);
 
 
 // Load a specific latest
-[$latest, $err] = $client->Latest(null)->load(
-    ["id" => "example_id"], null
-);
+[$latest, $err] = $client->Latest()->load(["id" => "example_id"]);
+print_r($latest);
 ```
 
 ### Golang
@@ -139,8 +134,13 @@ $client = new ExchangeRateSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/exchange-rate-sdk/go"
 
-client := sdk.NewExchangeRateSDK(map[string]any{})
+client := sdk.NewExchangeRateSDK(map[string]any{
+    "apikey": os.Getenv("EXCHANGE-RATE_APIKEY"),
+})
 
+// Load latest data
+latest, err := client.Latest(nil).Load(map[string]any{}, nil)
+fmt.Println(latest)
 ```
 
 ### Ruby
@@ -148,13 +148,14 @@ client := sdk.NewExchangeRateSDK(map[string]any{})
 ```ruby
 require_relative "ExchangeRate_sdk"
 
-client = ExchangeRateSDK.new({})
+client = ExchangeRateSDK.new({
+  "apikey" => ENV["EXCHANGE-RATE_APIKEY"],
+})
 
 
 # Load a specific latest
-latest, err = client.Latest(nil).load(
-  { "id" => "example_id" }, nil
-)
+latest, err = client.Latest().load({ "id" => "example_id" })
+puts latest
 ```
 
 ### Lua
@@ -162,13 +163,14 @@ latest, err = client.Latest(nil).load(
 ```lua
 local sdk = require("exchange-rate_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("EXCHANGE-RATE_APIKEY"),
+})
 
 
 -- Load a specific latest
-local latest, err = client:Latest(nil):load(
-  { id = "example_id" }, nil
-)
+local latest, err = client:Latest():load({ id = "example_id" })
+print(latest)
 ```
 
 ## Unit testing in offline mode
@@ -187,25 +189,21 @@ const result = await client.Latest().load({ id: 'test01' })
 ### Python
 
 ```python
-client = ExchangeRateSDK.test(None, None)
-result, err = client.Latest(None).load(
-    {"id": "test01"}, None
-)
+client = ExchangeRateSDK.test()
+result, err = client.Latest().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = ExchangeRateSDK::test(null, null);
-[$result, $err] = $client->Latest(null)->load(
-    ["id" => "test01"], null
-);
+$client = ExchangeRateSDK::test();
+[$result, $err] = $client->Latest()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Latest(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -214,19 +212,15 @@ result, err := client.Latest(nil).Load(
 ### Ruby
 
 ```ruby
-client = ExchangeRateSDK.test(nil, nil)
-result, err = client.Latest(nil).load(
-  { "id" => "test01" }, nil
-)
+client = ExchangeRateSDK.test
+result, err = client.Latest().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Latest(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Latest():load({ id = "test01" })
 ```
 
 ## How it works
@@ -330,16 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the ExchangeRate-API
-
-- Upstream: [https://www.exchangerate-api.com](https://www.exchangerate-api.com)
-- API docs: [https://www.exchangerate-api.com/docs/free](https://www.exchangerate-api.com/docs/free)
-
-- Open access tier requires no API key and is free for personal or commercial currency conversion.
-- Attribution required: display "Rates By Exchange Rate API" linking to https://www.exchangerate-api.com.
-- Caching the response is explicitly permitted; re-distribution of the raw data is not.
-- Paid v6 plans (with API key) cover higher update frequencies and additional endpoints.
 
 ---
 

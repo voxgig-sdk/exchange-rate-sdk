@@ -117,6 +117,7 @@ func latestBasicSetup(extra map[string]any) *entityTestSetup {
 		"EXCHANGERATE_TEST_LATEST_ENTID": idmap,
 		"EXCHANGERATE_TEST_LIVE":      "FALSE",
 		"EXCHANGERATE_TEST_EXPLAIN":   "FALSE",
+		"EXCHANGERATE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["EXCHANGERATE_TEST_LATEST_ENTID"])
@@ -127,6 +128,7 @@ func latestBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["EXCHANGERATE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["EXCHANGERATE_APIKEY"],
 			},
 			extra,
 		})
