@@ -10,13 +10,13 @@ The Ruby SDK for the ExchangeRate API — an entity-oriented client using idioma
 
 ## Install
 ```bash
-gem install exchange-rate-sdk
+gem install voxgig-sdk-exchange-rate
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "exchange-rate-sdk"
+gem "voxgig-sdk-exchange-rate"
 ```
 
 Then run:

@@ -10,7 +10,7 @@ The Lua SDK for the ExchangeRate API — an entity-oriented client using Lua con
 
 ## Install
 ```bash
-luarocks install exchange-rate-sdk
+luarocks install voxgig-sdk-exchange-rate
 ```
 
 If the module is not yet published, add the source directory to
