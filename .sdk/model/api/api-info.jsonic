@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       description: "Fetch the latest currency exchange rates via API. ExchangeRate-API is free and unlimited."
       servers: [
         {

@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:latest():list() / client:latest():load({ id = ... })
+function ExchangeRateSDK:latest(data)
+  local EntityMod = require("entity.latest_entity")
+  if data == nil then
+    if self._latest == nil then
+      self._latest = EntityMod.new(self, nil)
+    end
+    return self._latest
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:latest() instead.
 function ExchangeRateSDK:Latest(data)
   local EntityMod = require("entity.latest_entity")
   return EntityMod.new(self, data)

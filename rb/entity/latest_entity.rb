@@ -45,6 +45,7 @@ class LatestEntity
     end
   end
 
+  # @return [Latest, Hash] the current Latest data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class LatestEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Latest fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Latest.
+  #
+  # @param reqmatch [LatestLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Latest, Hash] the loaded Latest; raises ExchangeRateError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

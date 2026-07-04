@@ -2,6 +2,8 @@
 
 import { LatestEntity } from './entity/LatestEntity'
 
+export type * from './ExchangeRateTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class ExchangeRateSDK {
 
 
 
+  _latest?: LatestEntity
+
+  // Idiomatic facade: `client.latest.list()` / `client.latest.load({ id })`.
+  get latest(): LatestEntity {
+    return (this._latest ??= new LatestEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.latest` instead. */
   Latest(data?: any) {
     const self = this
     return new LatestEntity(self,data)

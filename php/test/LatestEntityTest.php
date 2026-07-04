@@ -49,8 +49,7 @@ class LatestEntityTest extends TestCase
         // LOAD
         $latest_ref01_ent = $client->Latest(null);
         $latest_ref01_match_dt0 = [];
-        [$latest_ref01_data_dt0_loaded, $err] = $latest_ref01_ent->load($latest_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $latest_ref01_data_dt0_loaded = $latest_ref01_ent->load($latest_ref01_match_dt0, null);
         $this->assertNotNull($latest_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function latest_basic_setup($extra)
         "EXCHANGERATE_TEST_LATEST_ENTID" => $idmap,
         "EXCHANGERATE_TEST_LIVE" => "FALSE",
         "EXCHANGERATE_TEST_EXPLAIN" => "FALSE",
-        "EXCHANGERATE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function latest_basic_setup($extra)
     if ($env["EXCHANGERATE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["EXCHANGERATE_APIKEY"],
             ],
             $extra ?? [],
         ]);

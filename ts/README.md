@@ -9,9 +9,12 @@ The TypeScript SDK for the ExchangeRate API — a type-safe, entity-oriented cli
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/exchange-rate
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/exchange-rate-sdk/releases](https://github.com/voxgig-sdk/exchange-rate-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { ExchangeRateSDK } from 'exchange-rate'
+import { ExchangeRateSDK } from '@voxgig-sdk/exchange-rate'
 
-const client = new ExchangeRateSDK({
-  apikey: process.env.EXCHANGE-RATE_APIKEY,
-})
+const client = new ExchangeRateSDK()
 ```
 
 ### 3. Load a latest
 
 ```ts
-const result = await client.Latest().load({ id: 'example_id' })
+const result = await client.latest.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = ExchangeRateSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.latest.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new ExchangeRateSDK({ apikey: '...' })
+const client = new ExchangeRateSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.latest
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new ExchangeRateSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new ExchangeRateSDK({
 Create a `.env.local` file at the project root:
 
 ```
-EXCHANGE-RATE_TEST_LIVE=TRUE
-EXCHANGE-RATE_APIKEY=<your-key>
+EXCHANGE_RATE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new ExchangeRateSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new ExchangeRateSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -269,7 +266,7 @@ API path: `/latest/{base_currency}`
 
 ### Latest
 
-Create an instance: `const latest = client.Latest()`
+Create an instance: `const latest = client.latest`
 
 #### Operations
 
@@ -289,7 +286,7 @@ Create an instance: `const latest = client.Latest()`
 #### Example: Load
 
 ```ts
-const latest = await client.Latest().load({ id: 'latest_id' })
+const latest = await client.latest.load({ id: 'latest_id' })
 ```
 
 
@@ -350,7 +347,7 @@ exchange-rate/
 Import the SDK from the package root:
 
 ```ts
-import { ExchangeRateSDK } from 'exchange-rate'
+import { ExchangeRateSDK } from '@voxgig-sdk/exchange-rate'
 ```
 
 ### Entity state
@@ -360,11 +357,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const latest = client.latest
+await latest.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// latest.data() now returns the loaded latest data
+// latest.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

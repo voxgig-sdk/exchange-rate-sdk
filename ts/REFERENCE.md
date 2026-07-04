@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `ExchangeRateSDK.test()`.
 ## LatestEntity
 
 ```ts
-const latest = client.Latest()
+const latest = client.latest
 ```
 
 ### Fields
@@ -129,7 +128,7 @@ const latest = client.Latest()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Latest().load({ id: 'latest_id' })
+const result = await client.latest.load({ id: 'latest_id' })
 ```
 
 ### Common Methods

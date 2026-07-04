@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.exchangerate-api.com/v4',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -103,7 +99,8 @@ class Config {
                     "name": "id",
                     "orig": "base_currency",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

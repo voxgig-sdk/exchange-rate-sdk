@@ -245,6 +245,9 @@ func (sdk *ExchangeRateSDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// Latest returns a Latest entity bound to this client.
+// Idiomatic usage: client.Latest(nil).List(nil, nil) or
+// client.Latest(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ExchangeRateSDK) Latest(data map[string]any) ExchangeRateEntity {
 	return NewLatestEntityFunc(sdk, data)
 }
