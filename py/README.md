@@ -33,10 +33,12 @@ client = ExchangeRateSDK()
 
 ### 3. Load a latest
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.latest.load({"id": "example_id"})
-    print(result)
+    latest = client.Latest().load({"id": "example_id"})
+    print(latest)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = ExchangeRateSDK.test()
 
-result = client.latest.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+latest = client.Latest().load({"id": "test01"})
+# latest contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -221,7 +224,7 @@ API path: `/latest/{base_currency}`
 
 ### Latest
 
-Create an instance: `const latest = client.latest`
+Create an instance: `latest = client.Latest()`
 
 #### Operations
 
@@ -240,8 +243,8 @@ Create an instance: `const latest = client.latest`
 
 #### Example: Load
 
-```ts
-const latest = await client.latest.load({ id: 'latest_id' })
+```python
+latest = client.Latest().load({"id": "latest_id"})
 ```
 
 
@@ -315,7 +318,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-latest = client.latest
+latest = client.Latest()
 latest.load({"id": "example_id"})
 
 # latest.data_get() now returns the loaded latest data

@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## LatestEntity
 
 ```python
-latest = client.latest
+latest = client.Latest()
 ```
 
 ### Fields
@@ -99,7 +99,7 @@ latest = client.latest
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.latest.load({"id": "latest_id"})
+result = client.Latest().load({"id": "latest_id"})
 ```
 
 ### Common Methods

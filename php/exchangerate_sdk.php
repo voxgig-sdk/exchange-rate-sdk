@@ -233,10 +233,10 @@ class ExchangeRateSDK
 
     private $_latest = null;
 
-    // Idiomatic facade: $client->latest()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Latest() (PHP method
-    // names are case-insensitive).
-    public function latest($data = null)
+    // Canonical facade: $client->Latest()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->latest()
+    // resolves here too.
+    public function Latest($data = null)
     {
         require_once __DIR__ . '/entity/latest_entity.php';
         if ($data === null) {

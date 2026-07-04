@@ -33,9 +33,10 @@ $client = new ExchangeRateSDK();
 
 ```php
 try {
-    $result = $client->latest()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Latest record (throws on error).
+    $latest = $client->Latest()->load(["id" => "example_id"]);
+    print_r($latest);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = ExchangeRateSDK::test();
+$client = ExchangeRateSDK::test([
+    "entity" => ["latest" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->latest()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$latest = $client->Latest()->load(["id" => "test01"]);
+print_r($latest);
 ```
 
 ### Use a custom fetch function
@@ -226,7 +231,7 @@ API path: `/latest/{base_currency}`
 
 ### Latest
 
-Create an instance: `const latest = client.latest`
+Create an instance: `$latest = $client->Latest();`
 
 #### Operations
 
@@ -245,8 +250,9 @@ Create an instance: `const latest = client.latest`
 
 #### Example: Load
 
-```ts
-const latest = await client.latest.load({ id: 'latest_id' })
+```php
+// load() returns the bare Latest record (throws on error).
+$latest = $client->Latest()->load(["id" => "latest_id"]);
 ```
 
 
@@ -321,7 +327,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$latest = $client->latest();
+$latest = $client->Latest();
 $latest->load(["id" => "example_id"]);
 
 // $latest->dataGet() now returns the loaded latest data

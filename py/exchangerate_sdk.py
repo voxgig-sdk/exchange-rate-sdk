@@ -220,25 +220,15 @@ class ExchangeRateSDK:
         }
 
 
-    @property
-    def latest(self):
-        """Idiomatic facade: client.latest.list() / client.latest.load({"id": ...})."""
-        from entity.latest_entity import LatestEntity
-        cached = getattr(self, "_latest", None)
-        if cached is None:
-            cached = LatestEntity(self, None)
-            self._latest = cached
-        return cached
-
-    def Latest(self, data=None):
-        # Deprecated: use client.latest instead.
+    def Latest(self, data=None) -> "LatestEntity":
+        """Entity factory: client.Latest().list({}) / client.Latest().load({"id": ...})."""
         from entity.latest_entity import LatestEntity
         return LatestEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "ExchangeRateSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class ExchangeRateSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.latest_entity import LatestEntity

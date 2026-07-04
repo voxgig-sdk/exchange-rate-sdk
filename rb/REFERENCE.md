@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## LatestEntity
 
 ```ruby
-latest = client.latest
+latest = client.Latest
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ latest = client.latest
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.latest.load({ "id" => "latest_id" })
+result = client.Latest.load({ "id" => "latest_id" })
 ```
 
 ### Common Methods

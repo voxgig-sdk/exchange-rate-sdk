@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:latest():list() / client:latest():load({ id = ... })
-function ExchangeRateSDK:latest(data)
+-- Idiomatic facade: client:Latest():list() / client:Latest():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ExchangeRateSDK:Latest(data)
   local EntityMod = require("entity.latest_entity")
   if data == nil then
     if self._latest == nil then
@@ -253,12 +254,6 @@ function ExchangeRateSDK:latest(data)
     end
     return self._latest
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:latest() instead.
-function ExchangeRateSDK:Latest(data)
-  local EntityMod = require("entity.latest_entity")
   return EntityMod.new(self, data)
 end
 

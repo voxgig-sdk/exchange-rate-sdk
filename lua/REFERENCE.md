@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## LatestEntity
 
 ```lua
-local latest = client:latest(nil)
+local latest = client:Latest(nil)
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ local latest = client:latest(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:latest():load({ id = "latest_id" })
+local result, err = client:Latest():load({ id = "latest_id" })
 ```
 
 ### Common Methods

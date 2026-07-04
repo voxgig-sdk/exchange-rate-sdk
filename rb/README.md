@@ -32,8 +32,9 @@ client = ExchangeRateSDK.new
 
 ```ruby
 begin
-  result = client.latest.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Latest record (raises on error).
+  latest = client.Latest.load({ "id" => "example_id" })
+  puts latest
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = ExchangeRateSDK.test
+client = ExchangeRateSDK.test({
+  "entity" => { "latest" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.latest.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+latest = client.Latest.load({ "id" => "test01" })
+puts latest
 ```
 
 ### Use a custom fetch function
@@ -221,7 +226,7 @@ API path: `/latest/{base_currency}`
 
 ### Latest
 
-Create an instance: `const latest = client.latest`
+Create an instance: `latest = client.Latest`
 
 #### Operations
 
@@ -240,8 +245,9 @@ Create an instance: `const latest = client.latest`
 
 #### Example: Load
 
-```ts
-const latest = await client.latest.load({ id: 'latest_id' })
+```ruby
+# load returns the bare Latest record (raises on error).
+latest = client.Latest.load({ "id" => "latest_id" })
 ```
 
 
@@ -316,7 +322,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-latest = client.latest
+latest = client.Latest
 latest.load({ "id" => "example_id" })
 
 # latest.data_get now returns the loaded latest data

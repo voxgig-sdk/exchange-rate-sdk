@@ -109,7 +109,7 @@ Alias for `ExchangeRateSDK.test()`.
 ## LatestEntity
 
 ```ts
-const latest = client.latest
+const latest = client.Latest()
 ```
 
 ### Fields
@@ -128,7 +128,7 @@ const latest = client.latest
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.latest.load({ id: 'latest_id' })
+const result = await client.Latest().load({ id: 'latest_id' })
 ```
 
 ### Common Methods

@@ -208,13 +208,7 @@ class ExchangeRateSDK
   end
 
 
-  # Idiomatic facade: client.latest.list / client.latest.load({ "id" => ... })
-  def latest
-    require_relative 'entity/latest_entity'
-    @latest ||= LatestEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.latest instead.
+  # Canonical facade: client.Latest.list / client.Latest.load({ "id" => ... })
   def Latest(data = nil)
     require_relative 'entity/latest_entity'
     LatestEntity.new(self, data)

@@ -204,14 +204,7 @@ class ExchangeRateSDK {
 
 
 
-  _latest?: LatestEntity
-
-  // Idiomatic facade: `client.latest.list()` / `client.latest.load({ id })`.
-  get latest(): LatestEntity {
-    return (this._latest ??= new LatestEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.latest` instead. */
+  // Entity access: `client.Latest().list()` / `client.Latest().load({ id })`.
   Latest(data?: any) {
     const self = this
     return new LatestEntity(self,data)

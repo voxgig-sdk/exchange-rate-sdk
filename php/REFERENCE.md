@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## LatestEntity
 
 ```php
-$latest = $client->latest();
+$latest = $client->Latest();
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ $latest = $client->latest();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->latest()->load(["id" => "latest_id"]);
+$result = $client->Latest()->load(["id" => "latest_id"]);
 ```
 
 ### Common Methods

@@ -26,9 +26,9 @@ import { ExchangeRateSDK } from '@voxgig-sdk/exchange-rate'
 
 const client = new ExchangeRateSDK()
 
-// Load latest data
-const latest = await client.latest.load({})
-console.log(latest.data)
+// Load latest data (returns a Latest)
+const latest = await client.Latest().load()
+console.log(latest)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,8 +84,8 @@ from exchangerate_sdk import ExchangeRateSDK
 client = ExchangeRateSDK()
 
 
-# Load a specific latest
-latest = client.latest.load({"id": "example_id"})
+# Load a specific latest (returns the record, raises on error)
+latest = client.Latest().load({"id": "example_id"})
 print(latest)
 ```
 
@@ -98,8 +98,8 @@ require_once 'exchangerate_sdk.php';
 $client = new ExchangeRateSDK();
 
 
-// Load a specific latest
-$latest = $client->latest()->load(["id" => "example_id"]);
+// Load a specific latest (returns the bare record; throws on error)
+$latest = $client->Latest()->load(["id" => "example_id"]);
 print_r($latest);
 ```
 
@@ -123,8 +123,8 @@ require_relative "ExchangeRate_sdk"
 client = ExchangeRateSDK.new
 
 
-# Load a specific latest
-latest = client.latest.load({ "id" => "example_id" })
+# Load a specific latest (returns the bare record; raises on error)
+latest = client.Latest.load({ "id" => "example_id" })
 puts latest
 ```
 
@@ -137,7 +137,7 @@ local client = sdk.new()
 
 
 -- Load a specific latest
-local latest, err = client:latest():load({ id = "example_id" })
+local latest, err = client:Latest():load({ id = "example_id" })
 print(latest)
 ```
 
@@ -150,22 +150,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = ExchangeRateSDK.test()
-const result = await client.latest.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const latest = await client.Latest().load({ id: 'test01' })
+// latest is a bare Latest populated with mock data
+console.log(latest)
 ```
 
 ### Python
 
 ```python
 client = ExchangeRateSDK.test()
-result = client.latest.load({"id": "test01"})
+latest = client.Latest().load({"id": "test01"})
+print(latest)
 ```
 
 ### PHP
 
 ```php
-$client = ExchangeRateSDK::test();
-$result = $client->latest()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = ExchangeRateSDK::test([
+    "entity" => ["latest" => ["test01" => ["id" => "test01"]]],
+]);
+$latest = $client->Latest()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -180,15 +185,18 @@ result, err := client.Latest(nil).Load(
 ### Ruby
 
 ```ruby
-client = ExchangeRateSDK.test
-result = client.latest.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = ExchangeRateSDK.test({
+  "entity" => { "latest" => { "test01" => { "id" => "test01" } } },
+})
+latest = client.Latest.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:latest():load({ id = "test01" })
+local result, err = client:Latest():load({ id = "test01" })
 ```
 
 ## How it works
@@ -236,6 +244,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
