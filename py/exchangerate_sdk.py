@@ -221,7 +221,7 @@ class ExchangeRateSDK:
 
 
     def Latest(self, data=None) -> "LatestEntity":
-        """Entity factory: client.Latest().list({}) / client.Latest().load({"id": ...})."""
+        """Entity factory: client.Latest().list() / client.Latest().load({"id": ...})."""
         from entity.latest_entity import LatestEntity
         return LatestEntity(self, data)
 

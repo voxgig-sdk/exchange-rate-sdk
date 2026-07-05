@@ -8,7 +8,7 @@ Complete API reference for the ExchangeRate Python SDK.
 ### Constructor
 
 ```python
-from exchange-rate_sdk import ExchangeRateSDK
+from exchangerate_sdk import ExchangeRateSDK
 
 client = ExchangeRateSDK(options)
 ```
@@ -87,10 +87,10 @@ latest = client.Latest()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
-| `time_last_updated` | ``$INTEGER`` | No |  |
+| `base` | `str` | No |  |
+| `date` | `str` | No |  |
+| `rate` | `dict` | No |  |
+| `time_last_updated` | `int` | No |  |
 
 ### Operations
 

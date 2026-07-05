@@ -8,7 +8,7 @@ Complete API reference for the ExchangeRate Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'exchange-rate_sdk'
+require_relative 'ExchangeRate_sdk'
 
 client = ExchangeRateSDK.new(options)
 ```
@@ -93,10 +93,10 @@ latest = client.Latest
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
-| `time_last_updated` | ``$INTEGER`` | No |  |
+| `base` | `String` | No |  |
+| `date` | `String` | No |  |
+| `rate` | `Hash` | No |  |
+| `time_last_updated` | `Integer` | No |  |
 
 ### Operations
 

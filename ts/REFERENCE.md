@@ -116,10 +116,10 @@ const latest = client.Latest()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
-| `time_last_updated` | ``$INTEGER`` | No |  |
+| `base` | `string` | No |  |
+| `date` | `string` | No |  |
+| `rate` | `Record<string, any>` | No |  |
+| `time_last_updated` | `number` | No |  |
 
 ### Operations
 

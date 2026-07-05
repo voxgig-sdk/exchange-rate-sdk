@@ -8,7 +8,7 @@ Complete API reference for the ExchangeRate PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/exchange-rate_sdk.php';
+require_once __DIR__ . '/exchangerate_sdk.php';
 
 $client = new ExchangeRateSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = ExchangeRateSDK::test();
 
 Create a new `LatestEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): ExchangeRateUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,10 +92,10 @@ $latest = $client->Latest();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `base` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$OBJECT`` | No |  |
-| `time_last_updated` | ``$INTEGER`` | No |  |
+| `base` | `string` | No |  |
+| `date` | `string` | No |  |
+| `rate` | `array` | No |  |
+| `time_last_updated` | `int` | No |  |
 
 ### Operations
 
@@ -109,19 +109,19 @@ $result = $client->Latest()->load(["id" => "latest_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -130,7 +130,7 @@ Set the entity match criteria.
 Create a new `LatestEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
