@@ -12,10 +12,10 @@ main: {
           url: "https://api.exchangerate-api.com/v4"
         }
       ]
+      summary: "Fetch the latest currency exchange rates via API."
       termsOfService: "https://www.exchangerate-api.com/terms"
       title: "ExchangeRate-API"
       version: "4"
+      website: "https://www.exchangerate-api.com/docs/documentation"
     }
   }
-}
-

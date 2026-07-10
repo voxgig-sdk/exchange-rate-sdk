@@ -91,6 +91,7 @@ same parameters as `Direct()`.
 
 ```go
 latest := client.Latest(nil)
+fmt.Println(latest.GetName()) // "latest"
 ```
 
 ### Fields
@@ -110,6 +111,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Latest(nil).Load(map[string]any{"id": "latest_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

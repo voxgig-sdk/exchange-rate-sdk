@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -232,15 +229,18 @@
       "info": {
         "auth": false,
         "description": "Fetch the latest currency exchange rates via API. ExchangeRate-API is free and unlimited.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "No authentication endpoint. Returns latest exchange rates and some metadata.",
             "url": "https://api.exchangerate-api.com/v4"
           }
         ],
+        "summary": "Fetch the latest currency exchange rates via API.",
         "termsOfService": "https://www.exchangerate-api.com/terms",
         "title": "ExchangeRate-API",
-        "version": "4"
+        "version": "4",
+        "website": "https://www.exchangerate-api.com/docs/documentation"
       },
       "option": {},
       "target": {
@@ -293,6 +293,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -343,6 +346,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

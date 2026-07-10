@@ -51,7 +51,7 @@ func main() {
     client := sdk.New()
 
     // Load a single latest — the value is the loaded record.
-    latest, err := client.Latest(nil).Load(map[string]any{"id": "example"}, nil)
+    latest, err := client.Latest(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
