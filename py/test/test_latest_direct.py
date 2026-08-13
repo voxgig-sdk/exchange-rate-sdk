@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from exchangerate_sdk.utility.voxgig_struct import voxgig_struct as vs
 from exchangerate_sdk import ExchangeRateSDK
-from core import helpers
+from exchangerate_sdk.core import helpers
 from test import runner
 
 
@@ -66,11 +66,11 @@ def _latest_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "EXCHANGERATE_TEST_LATEST_ENTID": {},
-        "EXCHANGERATE_TEST_LIVE": "FALSE",
+        "EXCHANGE_RATE_TEST_LATEST_ENTID": {},
+        "EXCHANGE_RATE_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("EXCHANGERATE_TEST_LIVE") == "TRUE"
+    live = env.get("EXCHANGE_RATE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

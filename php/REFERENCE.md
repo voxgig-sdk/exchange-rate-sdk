@@ -88,15 +88,6 @@ Prepare a fetch definition without sending the request. Returns the
 $latest = $client->Latest();
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `base` | `string` | No |  |
-| `date` | `string` | No |  |
-| `rate` | `array` | No |  |
-| `time_last_updated` | `int` | No |  |
-
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`

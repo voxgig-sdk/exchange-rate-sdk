@@ -16,11 +16,11 @@
 import pytest
 
 from exchangerate_sdk import ExchangeRateSDK
-from core.error import ExchangeRateError
-from core.result import ExchangeRateResult
-from core.response import ExchangeRateResponse
-from core.spec import ExchangeRateSpec
-from feature.base_feature import ExchangeRateBaseFeature
+from exchangerate_sdk.core.error import ExchangeRateError
+from exchangerate_sdk.core.result import ExchangeRateResult
+from exchangerate_sdk.core.response import ExchangeRateResponse
+from exchangerate_sdk.core.spec import ExchangeRateSpec
+from exchangerate_sdk.feature.base_feature import ExchangeRateBaseFeature
 
 
 def _client():

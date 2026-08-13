@@ -70,11 +70,11 @@ function latest_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["EXCHANGERATE_TEST_LATEST_ENTID"] = {},
-    ["EXCHANGERATE_TEST_LIVE"] = "FALSE",
+    ["EXCHANGE_RATE_TEST_LATEST_ENTID"] = {},
+    ["EXCHANGE_RATE_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["EXCHANGERATE_TEST_LIVE"] == "TRUE"
+  local live = env["EXCHANGE_RATE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

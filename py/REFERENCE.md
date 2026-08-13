@@ -83,15 +83,6 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 latest = client.Latest()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `base` | `str` | No |  |
-| `date` | `str` | No |  |
-| `rate` | `dict` | No |  |
-| `time_last_updated` | `int` | No |  |
-
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`

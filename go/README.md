@@ -258,10 +258,6 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"base"` |  |
-| `"date"` |  |
-| `"rate"` |  |
-| `"time_last_updated"` |  |
 
 Operations: Load.
 
@@ -281,15 +277,6 @@ Create an instance: `latest := client.Latest(nil)`
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `base` | `string` |  |
-| `date` | `string` |  |
-| `rate` | `map[string]any` |  |
-| `time_last_updated` | `int` |  |
 
 #### Example: Load
 

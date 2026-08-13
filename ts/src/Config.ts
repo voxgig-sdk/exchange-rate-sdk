@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'ExchangeRate',
   }
 
 
@@ -53,36 +53,7 @@ class Config {
 
   entity = {
     "latest": {
-      "fields": [
-        {
-          "active": true,
-          "name": "base",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
-        },
-        {
-          "active": true,
-          "name": "date",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
-        },
-        {
-          "active": true,
-          "name": "rate",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 2
-        },
-        {
-          "active": true,
-          "name": "time_last_updated",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 3
-        }
-      ],
+      "fields": [],
       "name": "latest",
       "op": {
         "load": {
@@ -104,6 +75,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/latest/{base_currency}",
               "parts": [
@@ -122,7 +94,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.rates`"
               },
               "index$": 0
             }

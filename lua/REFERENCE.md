@@ -86,15 +86,6 @@ same parameters as `direct()`.
 local latest = client:Latest(nil)
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `base` | `string` | No |  |
-| `date` | `string` | No |  |
-| `rate` | `table` | No |  |
-| `time_last_updated` | `number` | No |  |
-
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`

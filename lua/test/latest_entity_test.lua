@@ -29,7 +29,7 @@ describe("LatestEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set EXCHANGERATE_TEST_LATEST_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set EXCHANGE_RATE_TEST_LATEST_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -84,22 +84,22 @@ function latest_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("EXCHANGERATE_TEST_LATEST_ENTID")
+  local entid_env_raw = os.getenv("EXCHANGE_RATE_TEST_LATEST_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["EXCHANGERATE_TEST_LATEST_ENTID"] = idmap,
-    ["EXCHANGERATE_TEST_LIVE"] = "FALSE",
-    ["EXCHANGERATE_TEST_EXPLAIN"] = "FALSE",
+    ["EXCHANGE_RATE_TEST_LATEST_ENTID"] = idmap,
+    ["EXCHANGE_RATE_TEST_LIVE"] = "FALSE",
+    ["EXCHANGE_RATE_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["EXCHANGERATE_TEST_LATEST_ENTID"])
+    env["EXCHANGE_RATE_TEST_LATEST_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["EXCHANGERATE_TEST_LIVE"] == "TRUE" then
+  if env["EXCHANGE_RATE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -108,13 +108,13 @@ function latest_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["EXCHANGERATE_TEST_LIVE"] == "TRUE"
+  local live = env["EXCHANGE_RATE_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["EXCHANGERATE_TEST_EXPLAIN"] == "TRUE",
+    explain = env["EXCHANGE_RATE_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

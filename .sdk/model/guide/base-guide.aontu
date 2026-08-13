@@ -9,6 +9,7 @@ guide: {
     path: "/latest/{base_currency}": {
       rename: param: "base_currency": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.rates`")|top
     }
   }
 

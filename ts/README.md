@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = ExchangeRateSDK.test()
 
 const latest = await client.Latest().load({ id: 'test01' })
-// latest is a bare entity populated with mock response data
+// latest is the entity, populated with mock response data
+// — call latest.data() for the record itself
 console.log(latest)
 ```
 
@@ -284,10 +285,6 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `base` |  |
-| `date` |  |
-| `rate` |  |
-| `time_last_updated` |  |
 
 Operations: load.
 
@@ -307,15 +304,6 @@ Create an instance: `const latest = client.Latest()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `base` | `string` |  |
-| `date` | `string` |  |
-| `rate` | `Record<string, any>` |  |
-| `time_last_updated` | `number` |  |
 
 #### Example: Load
 

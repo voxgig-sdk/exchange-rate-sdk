@@ -23,36 +23,7 @@ func MakeConfig() map[string]any {
 		},
 		"entity": map[string]any{
 			"latest": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"active": true,
-						"name": "base",
-						"req": false,
-						"type": "`$STRING`",
-						"index$": 0,
-					},
-					map[string]any{
-						"active": true,
-						"name": "date",
-						"req": false,
-						"type": "`$STRING`",
-						"index$": 1,
-					},
-					map[string]any{
-						"active": true,
-						"name": "rate",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 2,
-					},
-					map[string]any{
-						"active": true,
-						"name": "time_last_updated",
-						"req": false,
-						"type": "`$INTEGER`",
-						"index$": 3,
-					},
-				},
+				"fields": []any{},
 				"name": "latest",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -74,6 +45,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/latest/{base_currency}",
 								"parts": []any{
@@ -92,12 +64,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.rates`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

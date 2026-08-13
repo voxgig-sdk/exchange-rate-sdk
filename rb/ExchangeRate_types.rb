@@ -9,25 +9,8 @@
 # annotations document the shapes. Do not edit by hand.
 
 # Latest entity data model.
-#
-# @!attribute [rw] base
-#   @return [String, nil]
-#
-# @!attribute [rw] date
-#   @return [String, nil]
-#
-# @!attribute [rw] rate
-#   @return [Hash, nil]
-#
-# @!attribute [rw] time_last_updated
-#   @return [Integer, nil]
-Latest = Struct.new(
-  :base,
-  :date,
-  :rate,
-  :time_last_updated,
-  keyword_init: true
-)
+class Latest
+end
 
 # Request payload for Latest#load.
 #

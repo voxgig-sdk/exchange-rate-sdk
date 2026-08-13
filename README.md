@@ -23,7 +23,7 @@ support (`load`):
 
 ```ts
 const client = new ExchangeRateSDK()
-const latest = await client.Latest().load()
+const latest = await client.Latest().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = ExchangeRateSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = ExchangeRateSDK.test({
+  entity: {
+    latest: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const latest = await client.Latest().load({ id: 'test01' })
-// latest is a bare Latest populated with mock data
+// latest is the Latest entity, populated with mock data
+// — call latest.data() for the record itself
 console.log(latest)
 ```
 
@@ -182,7 +191,7 @@ require_once 'exchangerate_sdk.php';
 $client = new ExchangeRateSDK();
 
 
-// Load a specific latest (returns the bare record; throws on error)
+// Load a specific latest (returns the ENTITY; call data_get() for the record; throws on error)
 $latest = $client->Latest()->load(["id" => "example_id"]);
 print_r($latest);
 ```
@@ -210,7 +219,7 @@ require_relative "ExchangeRate_sdk"
 client = ExchangeRateSDK.new
 
 
-# Load a specific latest (returns the bare record; raises on error)
+# Load a specific latest (returns the ENTITY; call data_get for the record)
 latest = client.Latest.load({ "id" => "example_id" })
 puts latest
 ```
@@ -344,6 +353,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.exchangerate-api.com/v4](https://api.exchangerate-api.com/v4)
 

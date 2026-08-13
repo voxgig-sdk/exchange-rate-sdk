@@ -112,15 +112,6 @@ Alias for `ExchangeRateSDK.test()`.
 const latest = client.Latest()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `base` | `string` | No |  |
-| `date` | `string` | No |  |
-| `rate` | `Record<string, any>` | No |  |
-| `time_last_updated` | `number` | No |  |
-
 ### Operations
 
 #### `load(match: object, ctrl?: object)`

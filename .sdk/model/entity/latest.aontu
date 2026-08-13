@@ -4,29 +4,6 @@ main: kit: entity: latest: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "base"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "date"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "rate"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "time_last_updated"
-      req: false
-      type: "`$INTEGER`"
-    }
-  ]
-
   name: "latest"
   op: {
     load: {
@@ -62,7 +39,7 @@ main: kit: entity: latest: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.rates`"
           }
         }
       ]

@@ -6,10 +6,6 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Latest {
-  base?: string
-  date?: string
-  rate?: Record<string, any>
-  time_last_updated?: number
 }
 
 export interface LatestLoadMatch {

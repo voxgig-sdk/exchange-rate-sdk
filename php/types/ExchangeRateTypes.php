@@ -15,10 +15,6 @@ declare(strict_types=1);
 /** Latest entity data model. */
 class Latest
 {
-    public ?string $base = null;
-    public ?string $date = null;
-    public ?array $rate = null;
-    public ?int $time_last_updated = null;
 }
 
 /** Request payload for Latest#load. */

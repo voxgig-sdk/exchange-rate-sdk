@@ -225,10 +225,6 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `base` |  |
-| `date` |  |
-| `rate` |  |
-| `time_last_updated` |  |
 
 Operations: Load.
 
@@ -248,15 +244,6 @@ Create an instance: `local latest = client:Latest(nil)`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `base` | `string` |  |
-| `date` | `string` |  |
-| `rate` | `table` |  |
-| `time_last_updated` | `number` |  |
 
 #### Example: Load
 
