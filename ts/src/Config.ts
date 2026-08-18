@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.exchangerate-api.com/v4',
+    base: "https://api.exchangerate-api.com/v4",
 
     headers: {
       "content-type": "application/json"
@@ -61,17 +61,14 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "base_currency",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -95,11 +92,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.rates`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {

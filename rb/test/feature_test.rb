@@ -15,7 +15,7 @@ require_relative "../ExchangeRate_sdk"
 module ExchangeRateFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = ExchangeRateConfig.make_config["feature"]
+    f = ExchangeRateConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

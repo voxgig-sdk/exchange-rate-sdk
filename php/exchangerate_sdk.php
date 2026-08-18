@@ -40,7 +40,7 @@ class ExchangeRateSDK
         $utility = new ExchangeRateUtility();
         $this->_utility = $utility;
 
-        $config = ExchangeRateConfig::make_config();
+        $config = ExchangeRateConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

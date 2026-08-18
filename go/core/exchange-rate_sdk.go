@@ -23,7 +23,7 @@ func NewExchangeRateSDK(options map[string]any) *ExchangeRateSDK {
 
 	sdk.utility = NewUtility()
 
-	config := MakeConfig()
+	config := SharedConfig()
 
 	sdk.rootctx = sdk.utility.MakeContext(map[string]any{
 		"client":  sdk,

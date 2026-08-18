@@ -28,7 +28,7 @@ class ExchangeRateSDK
     utility = ExchangeRateUtility.new
     @_utility = utility
 
-    config = ExchangeRateConfig.make_config
+    config = ExchangeRateConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
