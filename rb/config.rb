@@ -19,6 +19,9 @@ module ExchangeRateConfig
     {
       "main" => {
         "name" => "ExchangeRate",
+        "slug" => "exchange-rate",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {

@@ -33,6 +33,9 @@ class ExchangeRateConfig
         return [
             "main" => [
                 "name" => "ExchangeRate",
+                "slug" => "exchange-rate",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
