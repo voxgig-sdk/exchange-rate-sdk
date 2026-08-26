@@ -6,6 +6,7 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Latest {
+  id?: string
 }
 
 export interface LatestLoadMatch {

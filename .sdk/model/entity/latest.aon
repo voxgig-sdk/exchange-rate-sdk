@@ -4,6 +4,19 @@ main: kit: entity: latest: {
 
   alias: field: {}
 
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
   name: "latest"
   op: {
     load: {

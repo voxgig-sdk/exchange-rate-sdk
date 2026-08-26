@@ -44,10 +44,14 @@ describe("LatestEntity", function()
 
     -- LOAD
     local latest_ref01_ent = client:Latest(nil)
-    local latest_ref01_match_dt0 = {}
+    local latest_ref01_match_dt0 = {
+      id = latest_ref01_data["id"],
+    }
     local latest_ref01_data_dt0_loaded, err = latest_ref01_ent:load(latest_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(latest_ref01_data_dt0_loaded)
+    local latest_ref01_data_dt0_load_result = helpers.to_map(type(latest_ref01_data_dt0_loaded) == 'table' and latest_ref01_data_dt0_loaded.data_get and latest_ref01_data_dt0_loaded:data_get() or latest_ref01_data_dt0_loaded)
+    assert.is_not_nil(latest_ref01_data_dt0_load_result)
+    assert.are.equal(latest_ref01_data_dt0_load_result["id"], latest_ref01_data["id"])
 
   end)
 end)

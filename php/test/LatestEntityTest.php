@@ -48,9 +48,13 @@ class LatestEntityTest extends TestCase
 
         // LOAD
         $latest_ref01_ent = $client->Latest(null);
-        $latest_ref01_match_dt0 = [];
+        $latest_ref01_match_dt0 = [
+            "id" => $latest_ref01_data["id"],
+        ];
         $latest_ref01_data_dt0_loaded = $latest_ref01_ent->load($latest_ref01_match_dt0, null);
-        $this->assertNotNull($latest_ref01_data_dt0_loaded);
+        $latest_ref01_data_dt0_load_result = Helpers::to_map(is_object($latest_ref01_data_dt0_loaded) && method_exists($latest_ref01_data_dt0_loaded, 'data_get') ? $latest_ref01_data_dt0_loaded->data_get() : $latest_ref01_data_dt0_loaded);
+        $this->assertNotNull($latest_ref01_data_dt0_load_result);
+        $this->assertEquals($latest_ref01_data_dt0_load_result["id"], $latest_ref01_data["id"]);
 
     }
 }

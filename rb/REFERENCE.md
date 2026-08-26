@@ -89,6 +89,12 @@ same parameters as `direct()`. Raises on error.
 latest = client.Latest
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `String` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl = nil) -> result`

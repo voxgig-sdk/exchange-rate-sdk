@@ -9,8 +9,13 @@
 # annotations document the shapes. Do not edit by hand.
 
 # Latest entity data model.
-class Latest
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+Latest = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for Latest#load.
 #

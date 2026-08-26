@@ -7,6 +7,7 @@
 -- edit by hand.
 
 ---@class Latest
+---@field id? string
 
 ---@class LatestLoadMatch
 ---@field id string

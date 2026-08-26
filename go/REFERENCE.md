@@ -94,6 +94,12 @@ latest := client.Latest(nil)
 fmt.Println(latest.GetName()) // "latest"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`

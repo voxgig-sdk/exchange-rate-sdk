@@ -41,9 +41,13 @@ class LatestEntityTest < Minitest::Test
 
     # LOAD
     latest_ref01_ent = client.Latest(nil)
-    latest_ref01_match_dt0 = {}
+    latest_ref01_match_dt0 = {
+      "id" => latest_ref01_data["id"],
+    }
     latest_ref01_data_dt0_loaded = latest_ref01_ent.load(latest_ref01_match_dt0, nil)
-    assert !latest_ref01_data_dt0_loaded.nil?
+    latest_ref01_data_dt0_load_result = Helpers.to_map(latest_ref01_data_dt0_loaded.respond_to?(:data_get) ? latest_ref01_data_dt0_loaded.data_get : latest_ref01_data_dt0_loaded)
+    assert !latest_ref01_data_dt0_load_result.nil?
+    assert_equal latest_ref01_data_dt0_load_result["id"], latest_ref01_data["id"]
 
   end
 end

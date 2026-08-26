@@ -15,6 +15,7 @@ declare(strict_types=1);
 /** Latest entity data model. */
 class Latest
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Latest#load. */

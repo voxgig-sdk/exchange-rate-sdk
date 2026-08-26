@@ -14,6 +14,7 @@ import (
 
 // Latest is the typed data model for the latest entity.
 type Latest struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // LatestLoadMatch is the typed request payload for Latest.LoadTyped.

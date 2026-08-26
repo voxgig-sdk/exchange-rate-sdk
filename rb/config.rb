@@ -28,6 +28,7 @@ module ExchangeRateConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -41,7 +42,12 @@ module ExchangeRateConfig
       },
       "entity" => {
         "latest" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "latest",
           "op" => {
             "load" => {

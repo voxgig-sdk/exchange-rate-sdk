@@ -16,8 +16,8 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class Latest(TypedDict):
-    pass
+class Latest(TypedDict, total=False):
+    id: str
 
 
 class LatestLoadMatch(TypedDict):

@@ -145,7 +145,7 @@ await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -285,6 +285,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 
 Operations: load.
 
@@ -304,6 +305,12 @@ Create an instance: `const latest = client.Latest()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` |  |
 
 #### Example: Load
 

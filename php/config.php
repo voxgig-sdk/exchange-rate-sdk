@@ -42,6 +42,7 @@ class ExchangeRateConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -55,7 +56,12 @@ class ExchangeRateConfig
             ],
             "entity" => [
         'latest' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'latest',
           'op' => [
             'load' => [

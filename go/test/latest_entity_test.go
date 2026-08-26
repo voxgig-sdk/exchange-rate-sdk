@@ -61,13 +61,19 @@ func TestLatestEntity(t *testing.T) {
 
 		// LOAD
 		latestRef01Ent := client.Latest(nil)
-		latestRef01MatchDt0 := map[string]any{}
+		latestRef01MatchDt0 := map[string]any{
+			"id": latestRef01Data["id"],
+		}
 		latestRef01DataDt0Loaded, err := latestRef01Ent.Load(latestRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if latestRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		latestRef01DataDt0LoadResult := core.ToMapAny(entityData(latestRef01DataDt0Loaded))
+		if latestRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if latestRef01DataDt0LoadResult["id"] != latestRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

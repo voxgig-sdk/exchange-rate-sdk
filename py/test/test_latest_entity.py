@@ -48,9 +48,13 @@ class TestLatestEntity:
 
         # LOAD
         latest_ref01_ent = client.Latest(None)
-        latest_ref01_match_dt0 = {}
+        latest_ref01_match_dt0 = {
+            "id": latest_ref01_data["id"],
+        }
         latest_ref01_data_dt0_loaded = latest_ref01_ent.load(latest_ref01_match_dt0, None)
-        assert latest_ref01_data_dt0_loaded is not None
+        latest_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(latest_ref01_data_dt0_loaded))
+        assert latest_ref01_data_dt0_load_result is not None
+        assert latest_ref01_data_dt0_load_result["id"] == latest_ref01_data["id"]
 
 
 
