@@ -36,6 +36,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "latest",
         ["op"] = {
           ["load"] = {
@@ -57,13 +61,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/latest/{base_currency}",
-                ["parts"] = {
-                  "latest",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["base_currency"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "latest",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -74,6 +82,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.rates`",
+                },
+                ["parts"] = {
+                  "latest",
+                  "{id}",
                 },
               },
             },

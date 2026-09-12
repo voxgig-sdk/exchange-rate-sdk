@@ -48,6 +48,10 @@ module ExchangeRateConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "latest",
           "op" => {
             "load" => {
@@ -69,15 +73,19 @@ module ExchangeRateConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/latest/{base_currency}",
-                  "parts" => [
-                    "latest",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "base_currency" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "latest",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -87,6 +95,10 @@ module ExchangeRateConfig
                     "req" => "`reqdata`",
                     "res" => "`body.rates`",
                   },
+                  "parts" => [
+                    "latest",
+                    "{id}",
+                  ],
                 },
               ],
             },
