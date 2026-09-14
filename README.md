@@ -105,7 +105,7 @@ local result, err = client:Latest():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/releases) |
+| TypeScript | `@voxgig-sdk/exchange-rate-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/releases) |
 | Python | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/releases) |
 | PHP | `voxgig-sdk/exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/exchange-rate-sdk/go` | `go get github.com/voxgig-sdk/exchange-rate-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Latest():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { ExchangeRateSDK } from '@voxgig-sdk/exchange-rate'
+import { ExchangeRateSDK } from '@voxgig-sdk/exchange-rate-sdk'
 
 const client = new ExchangeRateSDK()
 

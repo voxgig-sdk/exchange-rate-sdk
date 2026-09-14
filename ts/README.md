@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { ExchangeRateSDK } from '@voxgig-sdk/exchange-rate'
+import { ExchangeRateSDK } from '@voxgig-sdk/exchange-rate-sdk'
 
 const client = new ExchangeRateSDK()
 ```
@@ -401,7 +401,7 @@ exchange-rate/
 Import the SDK from the package root:
 
 ```ts
-import { ExchangeRateSDK } from '@voxgig-sdk/exchange-rate'
+import { ExchangeRateSDK } from '@voxgig-sdk/exchange-rate-sdk'
 ```
 
 ### Entity state

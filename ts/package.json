@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/exchange-rate",
+  "name": "@voxgig-sdk/exchange-rate-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the ExchangeRate- public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [
