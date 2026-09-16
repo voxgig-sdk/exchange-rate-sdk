@@ -16,5 +16,79 @@
     "latest": {
       "latest_ref01": {}
     }
+  },
+  "requests": {
+    "GET /latest/{base_currency}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "**Base Currency**. *Example: USD*. You an use any of the ISO 4217 currency codes we support. See https://www.exchangerate-api.com/docs/supported-currencies",
+            "in": "path",
+            "name": "base_currency",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "base": {
+                      "description": "The currency code you supplied as base in your request",
+                      "example": "USD",
+                      "type": "string"
+                    },
+                    "date": {
+                      "description": "The date these exchange rates are for",
+                      "type": "string"
+                    },
+                    "rates": {
+                      "additionalProperties": {
+                        "format": "double",
+                        "type": "number"
+                      },
+                      "description": "Each supported currency code in terms of the base currency",
+                      "type": "object"
+                    },
+                    "time_last_updated": {
+                      "description": "The epoch time this set of exchange rates was generated",
+                      "example": 1556293443,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error_type": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Currency code not supported"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

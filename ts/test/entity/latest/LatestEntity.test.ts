@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { ExchangeRateSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('LatestEntity', async () => {
 
     const live = 'TRUE' === process.env.EXCHANGE_RATE_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'latest.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'latest.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set EXCHANGE_RATE_TEST_LATEST_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"id","req":false,"type":"`$STRING`","index$":0}],"id":{"field":"id","name":"id"},"name":"latest","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"base_currency","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /latest/{base_currency}","json":"{\"parameters\":[{\"description\":\"**Base Currency**. *Example: USD*. You an use any of the ISO 4217 currency codes we support. See https://www.exchangerate-api.com/docs/supported-currencies\",\"in\":\"path\",\"name\":\"base_currency\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"base\":{\"description\":\"The currency code you supplied as base in your request\",\"example\":\"USD\",\"type\":\"string\"},\"date\":{\"description\":\"The date these exchange rates are for\",\"type\":\"string\"},\"rates\":{\"additionalProperties\":{\"format\":\"double\",\"type\":\"number\"},\"description\":\"Each supported currency code in terms of the base currency\",\"type\":\"object\"},\"time_last_updated\":{\"description\":\"The epoch time this set of exchange rates was generated\",\"example\":1556293443,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error_type\":{\"type\":\"string\"},\"result\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Currency code not supported\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/latest/{base_currency}","rename":{"param":{"base_currency":"id"}},"segments":[{"lit":"latest"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body.rates`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"latest","name__orig":"latest","Name":"Latest","name_":"latest","name-":"latest","NAME":"LATEST","index$":0}, {"active":true,"entity":"latest","key$":"BasicLatestFlow","kind":"basic","name":"BasicLatestFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"latest_ref01","srcdatavar":"latest_ref01_data","suffix":"_dt0"},"match":{"id":"latest01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-latest_ref01"}}],"index$":0}]}, 'Latest')
     }
     const client = setup.client
     const struct = setup.struct
@@ -110,13 +109,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['EXCHANGE_RATE_TEST_LATEST_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'EXCHANGE_RATE_TEST_LATEST_ENTID': idmap,
     'EXCHANGE_RATE_TEST_LIVE': 'FALSE',
@@ -127,7 +119,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.EXCHANGE_RATE_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['EXCHANGE_RATE_TEST_LATEST_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new ExchangeRateSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -139,7 +137,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -152,7 +151,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.EXCHANGE_RATE_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 
