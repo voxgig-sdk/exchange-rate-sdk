@@ -105,12 +105,12 @@ local result, err = client:Latest():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/exchange-rate-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/releases) |
-| Python | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/releases) |
-| PHP | `voxgig-sdk/exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/releases) |
+| TypeScript | `@voxgig-sdk/exchange-rate-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
+| Python | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
+| PHP | `voxgig-sdk/exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/exchange-rate-sdk/go` | `go get github.com/voxgig-sdk/exchange-rate-sdk/go@latest` |
-| Ruby | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/releases) |
-| Lua | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/releases) |
+| Ruby | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
+| Lua | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/exchange-rate-sdk/go-cli` | `go install github.com/voxgig-sdk/exchange-rate-sdk/go-cli/cmd/exchange-rate@latest` |
 | Go MCP server | `github.com/voxgig-sdk/exchange-rate-sdk/go-mcp` | `go get github.com/voxgig-sdk/exchange-rate-sdk/go-mcp@latest` |
 
