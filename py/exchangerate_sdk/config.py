@@ -116,6 +116,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -130,25 +131,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "base_currency",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/latest/{base_currency}",
-                "rename": {
-                  "param": {
-                    "base_currency": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "latest",
@@ -157,19 +142,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "latest",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "base_currency": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.rates`",
                 },
-                "parts": [
-                  "latest",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "base_currency",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },

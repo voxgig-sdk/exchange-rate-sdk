@@ -113,6 +113,7 @@ class ExchangeRateConfig
           'fields' => [
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
           ],
@@ -127,25 +128,9 @@ class ExchangeRateConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'base_currency',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/latest/{base_currency}',
-                  'rename' => [
-                    'param' => [
-                      'base_currency' => 'id',
-                    ],
-                  ],
                   'segments' => [
                     [
                       'lit' => 'latest',
@@ -154,18 +139,34 @@ class ExchangeRateConfig
                       'var' => 'id',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'id',
+                  'parts' => [
+                    'latest',
+                    '{id}',
+                  ],
+                  'rename' => [
+                    'param' => [
+                      'base_currency' => 'id',
                     ],
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.rates`',
                   ],
-                  'parts' => [
-                    'latest',
-                    '{id}',
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'base_currency',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'id',
+                    ],
                   ],
                 ],
               ],
