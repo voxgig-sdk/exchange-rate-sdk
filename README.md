@@ -106,11 +106,11 @@ local result, err = client:Latest():load({ id = "test01" })
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/exchange-rate-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
-| Python | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
-| PHP | `voxgig-sdk/exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
+| Python | `voxgig-sdk-exchange-rate-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
+| PHP | `voxgig-sdk/exchange-rate-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/exchange-rate-sdk/go` | `go get github.com/voxgig-sdk/exchange-rate-sdk/go@latest` |
-| Ruby | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
-| Lua | `voxgig-sdk-exchange-rate` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
+| Ruby | `voxgig-sdk-exchange-rate-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
+| Lua | `voxgig-sdk-exchange-rate-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/exchange-rate-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/exchange-rate-sdk/go-cli` | `go install github.com/voxgig-sdk/exchange-rate-sdk/go-cli/cmd/exchange-rate@latest` |
 | Go MCP server | `github.com/voxgig-sdk/exchange-rate-sdk/go-mcp` | `go get github.com/voxgig-sdk/exchange-rate-sdk/go-mcp@latest` |
 
@@ -340,10 +340,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
-| **RatelimitFeature** | Client-side rate limiting via a token bucket |
-| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-| **TimeoutFeature** | Per-request timeout with transport abort |
+| **RatelimitFeature** | Rate limiting |
+| **RetryFeature** | Retry |
+| **TestFeature** | Test transport |
+| **TimeoutFeature** | Timeout |
 
 Pass custom features via the `extend` option at construction time.
 
