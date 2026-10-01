@@ -7,7 +7,11 @@
 -- edit by hand.
 
 ---@class Latest
+---@field base? string
+---@field date? string
 ---@field id? string
+---@field rates? table
+---@field time_last_updated? number
 
 ---@class LatestLoadMatch
 ---@field id string

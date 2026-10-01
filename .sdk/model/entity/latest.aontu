@@ -5,11 +5,39 @@ main: kit: entity: latest: {
   alias: field: {}
 
   fields: {
+    base: {
+      h: "Base"
+      n: "base"
+      r: false
+      sh: "The currency code you supplied as base in your request"
+      t: "`$STRING`"
+    }
+    date: {
+      h: "Date"
+      n: "date"
+      r: false
+      sh: "The date these exchange rates are for"
+      t: "`$STRING`"
+    }
     id: {
       h: "Id"
       n: "id"
       r: false
       t: "`$STRING`"
+    }
+    rates: {
+      h: "Rates"
+      n: "rates"
+      r: false
+      sh: "Each supported currency code in terms of the base currency"
+      t: "`$OBJECT`"
+    }
+    time_last_updated: {
+      h: "Time Last Updated"
+      n: "time_last_updated"
+      r: false
+      sh: "The epoch time this set of exchange rates was generated"
+      t: "`$INTEGER`"
     }
   }
 
@@ -62,7 +90,7 @@ main: kit: entity: latest: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.rates`"
+            res: "`body`"
           }
         }
       ]

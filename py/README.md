@@ -241,7 +241,11 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `base` | The currency code you supplied as base in your request |
+| `date` | The date these exchange rates are for |
 | `id` |  |
+| `rates` | Each supported currency code in terms of the base currency |
+| `time_last_updated` | The epoch time this set of exchange rates was generated |
 
 Operations: Load.
 
@@ -266,7 +270,11 @@ Create an instance: `latest = client.Latest()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `base` | `str` | The currency code you supplied as base in your request |
+| `date` | `str` | The date these exchange rates are for |
 | `id` | `str` |  |
+| `rates` | `dict` | Each supported currency code in terms of the base currency |
+| `time_last_updated` | `int` | The epoch time this set of exchange rates was generated |
 
 #### Example: Load
 

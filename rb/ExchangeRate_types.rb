@@ -10,10 +10,26 @@
 
 # Latest entity data model.
 #
+# @!attribute [rw] base
+#   @return [String, nil]
+#
+# @!attribute [rw] date
+#   @return [String, nil]
+#
 # @!attribute [rw] id
 #   @return [String, nil]
+#
+# @!attribute [rw] rates
+#   @return [Hash, nil]
+#
+# @!attribute [rw] time_last_updated
+#   @return [Integer, nil]
 Latest = Struct.new(
+  :base,
+  :date,
   :id,
+  :rates,
+  :time_last_updated,
   keyword_init: true
 )
 

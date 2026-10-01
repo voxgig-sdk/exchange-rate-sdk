@@ -90,9 +90,33 @@ func MakeConfig() map[string]any {
 			"latest": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"name": "base",
+						"title": "Base",
+						"type": "`$STRING`",
+						"short": "The currency code you supplied as base in your request",
+					},
+					map[string]any{
+						"name": "date",
+						"title": "Date",
+						"type": "`$STRING`",
+						"short": "The date these exchange rates are for",
+					},
+					map[string]any{
 						"name": "id",
 						"title": "Id",
 						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "rates",
+						"title": "Rates",
+						"type": "`$OBJECT`",
+						"short": "Each supported currency code in terms of the base currency",
+					},
+					map[string]any{
+						"name": "time_last_updated",
+						"title": "Time Last Updated",
+						"type": "`$INTEGER`",
+						"short": "The epoch time this set of exchange rates was generated",
 					},
 				},
 				"id": map[string]any{
@@ -128,7 +152,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.rates`",
+									"res": "`body`",
 								},
 								"args": map[string]any{
 									"params": []any{

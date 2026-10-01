@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/exchange-rate-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/exchange-rate-sdk/releases](https://github.com/voxgig-sdk/exchange-rate-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/exchange-rate-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-exchange-rate-sdk", path: "./exchange-rate-sdk/rb"
+```
 
 
 ## Tutorial: your first API call
@@ -238,7 +247,11 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
+| `base` | The currency code you supplied as base in your request |
+| `date` | The date these exchange rates are for |
 | `id` |  |
+| `rates` | Each supported currency code in terms of the base currency |
+| `time_last_updated` | The epoch time this set of exchange rates was generated |
 
 Operations: Load.
 
@@ -263,7 +276,11 @@ Create an instance: `latest = client.Latest`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `base` | `String` | The currency code you supplied as base in your request |
+| `date` | `String` | The date these exchange rates are for |
 | `id` | `String` |  |
+| `rates` | `Hash` | Each supported currency code in terms of the base currency |
+| `time_last_updated` | `Integer` | The epoch time this set of exchange rates was generated |
 
 #### Example: Load
 

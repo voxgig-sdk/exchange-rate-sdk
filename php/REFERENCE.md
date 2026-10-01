@@ -92,7 +92,11 @@ $latest = $client->Latest();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `base` | `string` | No | The currency code you supplied as base in your request |
+| `date` | `string` | No | The date these exchange rates are for |
 | `id` | `string` | No |  |
+| `rates` | `array` | No | Each supported currency code in terms of the base currency |
+| `time_last_updated` | `int` | No | The epoch time this set of exchange rates was generated |
 
 ### Operations
 

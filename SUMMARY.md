@@ -18,6 +18,13 @@ Results: Successful response.
 
 SDK operations: `load`.
 
+Key fields to recognise:
+
+- `base`: The currency code you supplied as base in your request
+- `date`: The date these exchange rates are for
+- `rates`: Each supported currency code in terms of the base currency
+- `time_last_updated`: The epoch time this set of exchange rates was generated
+
 ### Route map
 
 Use this map to locate a capability. Consult the entity reference before supplying request data; routes for the same operation can require different fields.

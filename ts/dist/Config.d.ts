@@ -74,11 +74,17 @@ declare class Config {
     };
     entity: {
         latest: {
-            fields: {
+            fields: ({
                 name: string;
                 title: string;
                 type: string;
-            }[];
+                short: string;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                short?: undefined;
+            })[];
             id: {
                 field: string;
                 name: string;

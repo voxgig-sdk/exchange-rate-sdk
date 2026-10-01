@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 ExchangeRateUtility.registrar = ->(u) {
   u.clean = ExchangeRateUtilities::Clean
+  u.clean_add = ExchangeRateUtilities::CleanAdd
+  u.clean_explain = ExchangeRateUtilities::CleanExplain
   u.done = ExchangeRateUtilities::Done
   u.make_error = ExchangeRateUtilities::MakeError
   u.feature_add = ExchangeRateUtilities::FeatureAdd

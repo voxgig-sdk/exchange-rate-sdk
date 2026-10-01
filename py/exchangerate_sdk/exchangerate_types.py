@@ -17,7 +17,11 @@ from typing import TypedDict, Any
 
 
 class Latest(TypedDict, total=False):
+    base: str
+    date: str
     id: str
+    rates: dict
+    time_last_updated: int
 
 
 class LatestLoadMatch(TypedDict):

@@ -15,9 +15,13 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`):
+release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/exchange-rate-sdk/releases)), or from a
+clone, which carries the compiled `dist/`:
 
-- Releases: [https://github.com/voxgig-sdk/exchange-rate-sdk/releases](https://github.com/voxgig-sdk/exchange-rate-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/exchange-rate-sdk
+npm install ./exchange-rate-sdk/ts
+```
 
 
 ## Tutorial: your first API call
@@ -290,7 +294,11 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
+| `base` | The currency code you supplied as base in your request |
+| `date` | The date these exchange rates are for |
 | `id` |  |
+| `rates` | Each supported currency code in terms of the base currency |
+| `time_last_updated` | The epoch time this set of exchange rates was generated |
 
 Operations: load.
 
@@ -315,7 +323,11 @@ Create an instance: `const latest = client.Latest()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `base` | `string` | The currency code you supplied as base in your request |
+| `date` | `string` | The date these exchange rates are for |
 | `id` | `string` |  |
+| `rates` | `Record<string, any>` | Each supported currency code in terms of the base currency |
+| `time_last_updated` | `number` | The epoch time this set of exchange rates was generated |
 
 #### Example: Load
 

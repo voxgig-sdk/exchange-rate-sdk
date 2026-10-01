@@ -2,19 +2,36 @@
   "existing": {
     "latest": {
       "LATEST00": {
-        "id": "LATEST00"
+        "base": "s32",
+        "date": "s33",
+        "id": "LATEST00",
+        "rates": {},
+        "time_last_updated": 54
       },
       "LATEST01": {
-        "id": "LATEST01"
+        "base": "s64",
+        "date": "s65",
+        "id": "LATEST01",
+        "rates": {},
+        "time_last_updated": 104
       },
       "LATEST02": {
-        "id": "LATEST02"
+        "base": "s96",
+        "date": "s97",
+        "id": "LATEST02",
+        "rates": {},
+        "time_last_updated": 154
       }
     }
   },
   "new": {
     "latest": {
-      "latest_ref01": {}
+      "latest_ref01": {
+        "base": "sc8",
+        "date": "sc9",
+        "rates": {},
+        "time_last_updated": 204
+      }
     }
   },
   "requests": {

@@ -93,7 +93,11 @@ latest = client.Latest
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `base` | `String` | No | The currency code you supplied as base in your request |
+| `date` | `String` | No | The date these exchange rates are for |
 | `id` | `String` | No |  |
+| `rates` | `Hash` | No | Each supported currency code in terms of the base currency |
+| `time_last_updated` | `Integer` | No | The epoch time this set of exchange rates was generated |
 
 ### Operations
 

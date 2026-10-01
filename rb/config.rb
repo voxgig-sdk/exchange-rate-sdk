@@ -98,9 +98,33 @@ module ExchangeRateConfig
         "latest" => {
           "fields" => [
             {
+              "name" => "base",
+              "title" => "Base",
+              "type" => "`$STRING`",
+              "short" => "The currency code you supplied as base in your request",
+            },
+            {
+              "name" => "date",
+              "title" => "Date",
+              "type" => "`$STRING`",
+              "short" => "The date these exchange rates are for",
+            },
+            {
               "name" => "id",
               "title" => "Id",
               "type" => "`$STRING`",
+            },
+            {
+              "name" => "rates",
+              "title" => "Rates",
+              "type" => "`$OBJECT`",
+              "short" => "Each supported currency code in terms of the base currency",
+            },
+            {
+              "name" => "time_last_updated",
+              "title" => "Time Last Updated",
+              "type" => "`$INTEGER`",
+              "short" => "The epoch time this set of exchange rates was generated",
             },
           ],
           "id" => {
@@ -136,7 +160,7 @@ module ExchangeRateConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body.rates`",
+                    "res" => "`body`",
                   },
                   "args" => {
                     "params" => [

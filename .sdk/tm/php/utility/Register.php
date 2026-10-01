@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 ExchangeRateUtility::setRegistrar(function (ExchangeRateUtility $u): void {
     $u->clean = [ExchangeRateClean::class, 'call'];
+    $u->clean_add = [ExchangeRateClean::class, 'add'];
+    $u->clean_explain = [ExchangeRateDone::class, 'clean_explain'];
     $u->done = [ExchangeRateDone::class, 'call'];
     $u->make_error = [ExchangeRateMakeError::class, 'call'];
     $u->feature_add = [ExchangeRateFeatureAdd::class, 'call'];
