@@ -7,6 +7,19 @@ import { ExchangeRateEntityBase } from './ExchangeRateEntityBase';
 import { Utility } from './utility/Utility';
 import { BaseFeature } from './feature/base/BaseFeature';
 declare const stdutil: Utility;
+type DirectResult = {
+    ok: false;
+    err: any;
+    status?: undefined;
+    headers?: undefined;
+    data?: undefined;
+} | {
+    ok: boolean;
+    status: number;
+    headers: any;
+    data: any;
+    err?: any;
+};
 declare class ExchangeRateSDK {
     _mode: string;
     _options: any;
@@ -17,32 +30,8 @@ declare class ExchangeRateSDK {
     options(): any;
     utility(): any;
     prepare(fetchargs?: any): Promise<any>;
-    direct(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
-    _rawRequest(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
+    direct(fetchargs?: any): Promise<DirectResult>;
+    _rawRequest(fetchargs?: any): Promise<DirectResult>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Latest(entopts?: Record<string, any>): LatestEntity;
     static test(testoptsarg?: any, sdkoptsarg?: any): ExchangeRateSDK;
@@ -55,3 +44,4 @@ declare class ExchangeRateSDK {
 }
 declare const SDK: typeof ExchangeRateSDK;
 export { stdutil, config, BaseFeature, ExchangeRateEntityBase, ExchangeRateSDK, SDK, };
+export type { DirectResult };

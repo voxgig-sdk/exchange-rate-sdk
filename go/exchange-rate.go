@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type ExchangeRateEntity = core.ExchangeRateEntity
+type ExchangeRateEntityBase = core.ExchangeRateEntityBase
+
+// Deprecated: use ExchangeRateEntityBase.
+type ExchangeRateEntity = core.ExchangeRateEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,7 +46,7 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewLatestEntityFunc = func(client *core.ExchangeRateSDK, entopts map[string]any) core.ExchangeRateEntity {
+	core.NewLatestEntityFunc = func(client *core.ExchangeRateSDK, entopts map[string]any) core.ExchangeRateEntityBase {
 		return entity.NewLatestEntity(client, entopts)
 	}
 }

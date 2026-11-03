@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // ExchangeRate SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class ExchangeRatePrepareBody
 {
     public static function call(ExchangeRateContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (ExchangeRateMedia::isRawRequest($ctx->point)) {
+                return ExchangeRateMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

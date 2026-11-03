@@ -3,5 +3,16 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Each supported currency code in terms of the base currency",
+      "Fetch the latest currency exchange rates via API. ExchangeRate-API is free and unlimited.",
+      "No authentication endpoint. Returns latest exchange rates and some metadata.",
+      "Successful response",
+      "The currency code you supplied as base in your request",
+      "The date these exchange rates are for",
+      "The epoch time this set of exchange rates was generated"
+    ]
+  }
 }

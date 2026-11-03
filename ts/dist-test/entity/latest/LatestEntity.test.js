@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Latest();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.ExchangeRateSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Latest().load({ "id": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.EXCHANGE_RATE_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "base": { "a": true, "h": "Base", "n": "base", "r": false, "sh": "The currency code you supplied as base in your request", "t": "`$STRING`", "key$": "base", "index$": 0 }, "date": { "a": true, "h": "Date", "n": "date", "r": false, "sh": "The date these exchange rates are for", "t": "`$STRING`", "key$": "date", "index$": 1 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 2 }, "rates": { "a": true, "h": "Rates", "n": "rates", "r": false, "sh": "Each supported currency code in terms of the base currency", "t": "`$OBJECT`", "key$": "rates", "index$": 3 }, "time_last_updated": { "a": true, "h": "Time Last Updated", "n": "time_last_updated", "r": false, "sh": "The epoch time this set of exchange rates was generated", "t": "`$INTEGER`", "key$": "time_last_updated", "index$": 4 } }, "id": { "field": "id", "name": "id" }, "name": "latest", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /latest/{base_currency}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "base_currency", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/latest/{base_currency}", "q": { "exist": ["id"] }, "r": { "param": { "base_currency": "id" } }, "s": [{ "lit": "latest" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "latest", "name__orig": "latest", "Name": "Latest", "name_": "latest", "name-": "latest", "NAME": "LATEST", "index$": 0 }, { "active": true, "entity": "latest", "key$": "BasicLatestFlow", "kind": "basic", "name": "BasicLatestFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "latest_ref01", "srcdatavar": "latest_ref01_data", "suffix": "_dt0" }, "m": { "id": "latest01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-latest_ref01" } }], "index$": 0 }] }, 'Latest', { "GET /latest/{base_currency}": { "protocol": "http", "parameters": [{ "name": "base_currency", "in": "path", "description": "**Base Currency**. *Example: USD*. You an use any of the ISO 4217 currency codes we support. See https://www.exchangerate-api.com/docs/supported-currencies", "schema": { "type": "string" }, "required": true, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "base": { "a": true, "h": "Base", "n": "base", "r": false, "sh": "The currency code you supplied as base in your request", "t": "`$STRING`", "key$": "base", "index$": 0 }, "date": { "a": true, "h": "Date", "n": "date", "r": false, "sh": "The date these exchange rates are for", "t": "`$STRING`", "key$": "date", "index$": 1 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 2 }, "rates": { "a": true, "h": "Rates", "n": "rates", "r": false, "sh": "Each supported currency code in terms of the base currency", "t": "`$OBJECT`", "key$": "rates", "index$": 3 }, "time_last_updated": { "a": true, "h": "Time Last Updated", "n": "time_last_updated", "r": false, "sh": "The epoch time this set of exchange rates was generated", "t": "`$INTEGER`", "key$": "time_last_updated", "index$": 4 } }, "id": { "field": "id", "name": "id" }, "name": "latest", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /latest/{base_currency}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "base_currency", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/latest/{base_currency}", "q": { "exist": ["id"] }, "r": { "param": { "base_currency": "id" } }, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "latest" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "latest", "name__orig": "latest", "Name": "Latest", "name_": "latest", "name-": "latest", "NAME": "LATEST", "index$": 0 }, { "active": true, "entity": "latest", "key$": "BasicLatestFlow", "kind": "basic", "name": "BasicLatestFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "latest_ref01", "srcdatavar": "latest_ref01_data", "suffix": "_dt0" }, "m": { "id": "latest01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-latest_ref01" } }], "index$": 0, "route": "GET /latest/{base_currency}", "record": {} }] }, 'Latest', { "GET /latest/{base_currency}": { "protocol": "http", "parameters": [{ "name": "base_currency", "in": "path", "description": "**Base Currency**. *Example: USD*. You an use any of the ISO 4217 currency codes we support. See https://www.exchangerate-api.com/docs/supported-currencies", "schema": { "type": "string" }, "required": true, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -77,6 +85,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(latest_ref01_data_dt0.id === latest_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

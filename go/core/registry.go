@@ -12,5 +12,5 @@ var NewTestFeatureFunc func() Feature
 
 var NewTimeoutFeatureFunc func() Feature
 
-var NewLatestEntityFunc func(client *ExchangeRateSDK, entopts map[string]any) ExchangeRateEntity
+var NewLatestEntityFunc func(client *ExchangeRateSDK, entopts map[string]any) ExchangeRateEntityBase
 

@@ -80,6 +80,10 @@ main: kit: entity: latest: {
               base_currency: "id"
             }
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "latest"
